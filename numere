@@ -1,0 +1,38 @@
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+string nume="numere";
+ifstream cin(nume+".in");
+ofstream cout(nume+".out");
+
+bool f[10];
+
+int main()
+{
+    int x,maxi=-1,primul=-1,ultimul=-1;
+    while(cin>>x)
+    {
+        if(x%10>maxi)
+        {
+            maxi=x%10;
+            primul=x;
+            ultimul=-1;
+        }
+        else if(maxi<(x/10)%10)
+        {
+            maxi=(x/10)%10;
+            primul=x;
+            ultimul=-1;
+        }
+        else if((maxi==x%10) or (maxi==((x/10)%10)))
+        {
+            ultimul=x;
+        }
+    }
+    if(ultimul!=-1&&primul!=-1){
+        cout<<primul<<" "<<ultimul;
+    }
+    else cout<<"nu exista";
+    return 0;
+}
